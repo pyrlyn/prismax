@@ -2,8 +2,8 @@
 # prismax is a TypeScript package: Rust and .NET checks are off; TypeScript, the Python script
 # tests, the SQLAlchemy import check and the Diesel compile check run as custom jobs.
 version: 1
-# Custom jobs run on pyrlyn/ci's default runner for custom jobs, the self-hosted Mac
-# `xcode-27-local` (no Actions minutes). Set `runs-on: ubuntu-latest` on a job to use hosted Linux.
+# Custom jobs run on hosted Linux: the self-hosted Mac `xcode-27-local`, pyrlyn/ci's default for
+# custom jobs, is no longer registered, so jobs queued for it never start.
 
 rust:
   enabled: false
@@ -14,6 +14,7 @@ codeql:
 
 jobs:
   - name: typescript
+    runs-on: ubuntu-latest
     mise: "node pnpm"
     setup: pnpm install --frozen-lockfile
     run: |
@@ -22,6 +23,7 @@ jobs:
       pnpm test
       npm pack --dry-run
   - name: python-scripts
+    runs-on: ubuntu-latest
     mise: "node pnpm python"
     setup: |
       python -m pip install "sqlalchemy>=2.0,<3" pytest
@@ -31,6 +33,7 @@ jobs:
       python scripts/check_sqlalchemy_models.py
       python -m pytest scripts/tests -q
   - name: diesel-compile-check
+    runs-on: ubuntu-latest
     mise: "node pnpm python rust"
     setup: |
       # Linux runners need the client libraries; the default pyrlyn runner (xcode-27-local) has them.
