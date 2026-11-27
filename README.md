@@ -1,4 +1,4 @@
-# prisma-x
+<h1><picture><source media="(prefers-color-scheme: dark)" srcset="brand/logo-dark.svg"><img src="brand/logo.svg" width="32" height="32" alt="" align="absmiddle"></picture> prisma-x</h1>
 
 [![pipeline](https://github.com/pyrlyn/prismax/actions/workflows/pipeline.yml/badge.svg)](https://github.com/pyrlyn/prismax/actions/workflows/pipeline.yml)
 [![npm](https://img.shields.io/npm/v/prisma-x)](https://www.npmjs.com/package/prisma-x)
